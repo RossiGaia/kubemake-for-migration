@@ -1,0 +1,26 @@
+---
+- name: Download runc binary
+  get_url:
+    url: "https://github.com/opencontainers/runc/releases/download/{{ runc_version }}/runc.amd64"
+    dest: "/usr/local/sbin/runc"
+    mode: "0755"
+    force: yes
+
+- name: Configure CRI-O to use runc
+  copy:
+    dest: /etc/crio/crio.conf.d/99-runc.conf
+    content: |
+      [crio.runtime]
+      default_runtime = "runc"
+
+- name: Configure CRI-O to support CRIU
+  copy:
+    dest: /etc/crio/crio.conf.d/98-criu.conf
+    content: |
+      [crio.runtime]
+      enable_criu_support = true
+
+- name: Restart CRI-O
+  systemd_service:
+    name: crio
+    state: restarted

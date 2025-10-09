@@ -1,0 +1,15 @@
+---
+# tasks file for criu
+- name: Add CRIU ppa repository
+  apt_repository:
+    repo: ppa:criu/ppa
+    state: present
+
+- name: Update apt cache
+  apt:
+    update_cache: yes
+
+- name: Install CRIU
+  apt:
+    name: criu
+    state: present
