@@ -10,6 +10,8 @@
   - crio
   - k8s/common
   - cni
+  - criu
+  - runc
 
 - hosts: controllers
   become: yes
