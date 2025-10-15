@@ -5,7 +5,7 @@
 
 - name: download kubernetes repository key
   get_url:
-    url: "https://pkgs.k8s.io/core:/stable:/{{ kubernetes_version }}/{{ kubernetes_os }}/Release.key"
+    url: "https://pkgs.k8s.io/core:/stable:/{{ kubernetes_version_repo }}/{{ kubernetes_os }}/Release.key"
     dest: /tmp/kubernetes-release.key
 
 # otherwide next task will prompt for confirmation
@@ -20,7 +20,7 @@
 - name: add kubernetes repository to sources list
   lineinfile:
     path: /etc/apt/sources.list.d/kubernetes.list
-    line: "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/{{ kubernetes_version }}/{{ kubernetes_os }}/ /"
+    line: "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/{{ kubernetes_version_repo }}/{{ kubernetes_os }}/ /"
     create: yes
 
 - name: install kubelet, kubeadm, and kubectl
