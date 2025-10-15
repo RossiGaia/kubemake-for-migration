@@ -106,9 +106,9 @@ The first thing you need is to build your [inventory](https://docs.ansible.com/a
 master ansible_user=ubuntu ansible_host=192.168.1.1 kubelet_node_ip=192.168.1.1 apiserver_advertise_address=192.168.1.1 apiserver_cert_extra_sans=172.16.100.100
 
 [workers]
-worker-1 ansible_user=ubuntu ansible_host=192.168.1.2 kubelet_node_ip=192.168.1.2 crio_os=xUbuntu_22.04 cni_arch=amd64
-worker-2 ansible_user=ubuntu ansible_host=192.168.1.3 kubelet_node_ip=192.168.1.3 crio_os=xUbuntu_22.04 cni_arch=amd64
-worker-3 ansible_user=ubuntu ansible_host=192.168.1.4 kubelet_node_ip=192.168.1.4 crio_os=xUbuntu_20.04 cni_arch=arm64
+worker-1 ansible_user=ubuntu ansible_host=192.168.1.2 kubelet_node_ip=192.168.1.2 cni_arch=amd64
+worker-2 ansible_user=ubuntu ansible_host=192.168.1.3 kubelet_node_ip=192.168.1.3 cni_arch=amd64
+worker-3 ansible_user=ubuntu ansible_host=192.168.1.4 kubelet_node_ip=192.168.1.4 cni_arch=arm64
 
 [gpus]
 worker-3 ansible_user=ubuntu ansible_host=192.168.1.4
@@ -119,6 +119,7 @@ controller-1 ansible_user=ubuntu ansible_host=192.168.1.5
 [all:vars]
 ansible_ssh_private_key_file=/path/to/your/pem
 crio_version="1.28"
+crio_os="deb"
 cri_socket="unix:/run/crio/crio.sock"
 cni_version="v1.4.0"
 kubernetes_version_repo="v1.29"
