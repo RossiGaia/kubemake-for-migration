@@ -72,3 +72,15 @@
     name: crio
     enabled: true
     state: started
+
+- name: Enable unsigned image to allow container restoration
+  copy:
+    dest: /etc/crio/crio.conf.d/97-unsigned-images-criu.conf
+    content: |
+      [crio.image]
+      signature_policy = ""
+
+- name: Restart CRI-O
+  systemd_service:
+    name: crio
+    state: restarted

@@ -13,3 +13,16 @@
   apt:
     name: criu
     state: present
+
+- name: Configure CRI-O to support CRIU
+  copy:
+    dest: /etc/crio/crio.conf.d/98-criu.conf
+    content: |
+      [crio.runtime]
+      enable_criu_support = true
+
+- name: Restart CRI-O
+  systemd_service:
+    name: crio
+    state: restarted
+
