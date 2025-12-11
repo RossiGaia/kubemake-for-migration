@@ -35,15 +35,15 @@
           chaos-mesh.org/inject: enabled
     state: patched
   
-- name: render template to access chaos dashboard remotely
-  template:
-    src: chaos-dashboard.j2
-    dest: $HOME/chaos-dashboard.yaml
+# - name: render template to access chaos dashboard remotely
+#   template:
+#     src: chaos-dashboard.j2
+#     dest: $HOME/chaos-dashboard.yaml
 
-- name: create gateway and virtual service to access chaos dashboard remotely
-  kubernetes.core.k8s:
-    src: $HOME/chaos-dashboard.yaml
-    state: present
+# - name: create gateway and virtual service to access chaos dashboard remotely
+#   kubernetes.core.k8s:
+#     src: $HOME/chaos-dashboard.yaml
+#     state: present
 
 - name: copy rbac for manager profile in default namespace
   copy:
